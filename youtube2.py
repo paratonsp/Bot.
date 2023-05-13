@@ -14,25 +14,25 @@ search = "AFTERMOVIE - MANTRA Tour"
 
 
 def open_youtube():
-    root = tk.Tk()
+    # root = tk.Tk()
     width = 320
     height = 480
     vidLength = 90
 
-    screen_width = root.winfo_screenwidth() - width
-    screen_height = root.winfo_screenheight() - height
+    # screen_width = root.winfo_screenwidth() - width
+    # screen_height = root.winfo_screenheight() - height
 
     option = Options()
     option.add_argument(f"--window-size={width},{height}")
     option.add_experimental_option("excludeSwitches", ["enable-logging"])
 
-    # browser = webdriver.Chrome("./chromedriver", options=option)
-    browser = webdriver.Chrome(
-        service=Service(ChromeDriverManager().install()), options=option
-    )
-    browser.set_window_position(
-        randrange(screen_width), randrange(screen_height), windowHandle="current"
-    )
+    browser = webdriver.Chrome("./chromedriver", options=option)
+    # browser = webdriver.Chrome(
+    #     service=Service(ChromeDriverManager().install()), options=option
+    # )
+    # browser.set_window_position(
+    #     randrange(screen_width), randrange(screen_height), windowHandle="current"
+    # )
 
     url = "https://www.youtube.com/results?search_query="
     url += search
@@ -54,12 +54,8 @@ def open_youtube():
 
 
 if __name__ == "__main__":
-    totalCount = 0
     while True:
         while psutil.virtual_memory().percent < 70:
             time.sleep(3)
             t = Thread(target=open_youtube, daemon=True)
             t.start()
-
-            totalCount += 1
-            print(f"Window Open: {totalCount}")
