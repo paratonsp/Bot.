@@ -6,16 +6,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 import time
 import psutil
 from random import randrange
+import random
 from threading import Thread
 import tkinter as tk
 
-search = "Demo Background Sample Video"
+search = "AFTERMOVIE - MANTRA Tour"
 
 
 def open_youtube():
     root = tk.Tk()
     width = 320
     height = 480
+    vidLength = 90
 
     screen_width = root.winfo_screenwidth() - width
     screen_height = root.winfo_screenheight() - height
@@ -41,7 +43,7 @@ def open_youtube():
             browser.find_element(
                 By.XPATH, '//yt-formatted-string[text()="' + search + '"]'
             ).click()
-            time.sleep(10)
+            time.sleep(random.randint(vidLength / 2, vidLength))
             browser.quit()
         except:
             browser.quit()
