@@ -19,9 +19,9 @@ for column in excel_data['Name'].tolist():
     data = {'chatId': contact, 'text': message, 'session': 'default'}
     dataTyping = {'chatId': contact, 'session': 'default'}
 
-    res = requests.post(url=API_ENDPOINT_START, data=dataTyping)
+    resStart = requests.post(url=API_ENDPOINT_START, data=dataTyping)
     time.sleep(random.randint(1, 5))
-    res = requests.post(url=API_ENDPOINT_STOP, data=dataTyping)
+    resStop = requests.post(url=API_ENDPOINT_STOP, data=dataTyping)
     res = requests.post(url=API_ENDPOINT_SEND, data=data)
     print('STATUS: ' + str(res.status_code) + ' | Send to ' + column)
 
