@@ -1,7 +1,6 @@
 import time
 import requests
 import pandas
-import random
 
 count = 0
 
@@ -19,13 +18,13 @@ for column in excel_data['Name'].tolist():
     data = {'chatId': contact, 'text': message, 'session': 'default'}
     dataTyping = {'chatId': contact, 'session': 'default'}
 
-    resStart = requests.post(url=API_ENDPOINT_START, data=dataTyping)
-    time.sleep(random.randint(1, 5))
-    resStop = requests.post(url=API_ENDPOINT_STOP, data=dataTyping)
+    requests.post(url=API_ENDPOINT_START, data=dataTyping)
+    time.sleep(3)
+    requests.post(url=API_ENDPOINT_STOP, data=dataTyping)
     res = requests.post(url=API_ENDPOINT_SEND, data=data)
     print('STATUS: ' + str(res.status_code) + ' | Send to ' + column)
 
     count = count + 1
-    time.sleep(5)
+    time.sleep(3)
 
 print('TOTAL: ' + str(count))
